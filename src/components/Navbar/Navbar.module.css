@@ -1,0 +1,39 @@
+.nav {
+    grid-area: nav;
+    background-color: sandybrown;
+    padding: 20px;
+}
+
+.nav ul {
+
+    list-style: none;
+
+}
+
+.item a {
+    color: wheat;
+    text-decoration: none;
+}
+
+.item a.activeLink {
+    color: darkgoldenrod;
+}
+
+.avatarImage {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+}
+
+.friendBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.friend {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
