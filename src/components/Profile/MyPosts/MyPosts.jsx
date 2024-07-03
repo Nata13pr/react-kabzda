@@ -3,7 +3,7 @@ import style from './MyPosts.module.css'
 import {createRef} from "react";
 
 const MyPosts = (props) => {
-    console.log(props.state.newPostText)
+
     const postElements = props.state.posts
         .map(post => (
         <Post
@@ -15,12 +15,12 @@ const MyPosts = (props) => {
     const newPostElement = createRef()
 
     const addPostMessage = () => {
-        props.addPost();
+        props.dispatch({type: "ADD_POST"})
     }
 
     const onPostChange=()=>{
         let text=newPostElement.current.value;
-        props.updateNewPostText(text)
+        props.dispatch({type: "UPDATE_NEW_POST_TEXT",text})
     }
 
     return (

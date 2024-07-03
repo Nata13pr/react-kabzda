@@ -71,32 +71,33 @@ const store = {
     _callSubscriber() {
         console.log('State changed')
     },
-    addPost() {
-        const newPostObj = {
-            id: 8,
-            post: this._state.profilePage.newPostText,
-            likeCount: 0
+    dispatch(action) {
+
+        if (action.type === 'ADD_POST') {
+            const newPostObj = {
+                id: 8,
+                post: this._state.profilePage.newPostText,
+                likeCount: 0
+            }
+            this._state.profilePage.posts.push(newPostObj);
+            this._state.profilePage.newPostText = '';
+            this._callSubscriber(this._state)
+        } else if (action.type === 'UPDATE_NEW_POST_TEXT') {
+            console.log(action.text,'3333333333333')
+            this._state.profilePage.newPostText = action.text;
+            this._callSubscriber(this._state)
+        } else if (action.type === 'ADD_MESSAGE') {
+            const newMessageObj = {
+                id: 7,
+                message: this._state.dialogPage.newMessageText,
+            }
+            this._state.dialogPage.messages.push(newMessageObj);
+            this._state.dialogPage.newMessageText = '';
+            this._callSubscriber(this._state)
+        } else if (action.type === 'UPDATE_NEW_MESSAGE_TEXT') {
+            this._state.dialogPage.newMessageText = action.text;
+            this._callSubscriber(this._state)
         }
-        this._state.profilePage.posts.push(newPostObj);
-        this._state.profilePage.newPostText = '';
-        this._callSubscriber(this._state)
-    },
-    updateNewPostText(newText) {
-        this._state.profilePage.newPostText = newText;
-        this._callSubscriber(this._state)
-    },
-    addMessage() {
-        const newMessageObj = {
-            id: 7,
-            message: this._state.dialogPage.newMessageText,
-        }
-        this._state.dialogPage.messages.push(newMessageObj);
-        this._state.dialogPage.newMessageText = '';
-        this._callSubscriber(this._state)
-    },
-    updateNewMessageText(newMessage) {
-        this._state.dialogPage.newMessageText = newMessage;
-        this._callSubscriber(this._state)
     },
     subscribe(observer) {
         this._callSubscriber = observer;

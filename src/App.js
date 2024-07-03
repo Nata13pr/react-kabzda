@@ -21,8 +21,7 @@ function App(props) {
                         element={
                             <Dialogs
                                 state={props.store.dialogPage}
-                                updateNewMessageText={props.updateNewMessageText}
-                                addMessage={props.addMessage}
+                                dispatch={props.dispatch}
                             />
                         }/>
                     <Route
@@ -30,8 +29,7 @@ function App(props) {
                         element={
                             <Profile
                                 store={props.store.profilePage}
-                                addPost={props.addPost}
-                                updateNewPostText={props.updateNewPostText}
+                                dispatch={props.dispatch}
                             />
                         }/>
                     <Route
