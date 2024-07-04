@@ -1,12 +1,10 @@
 import style from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import MessageItem from "./MessageItem/MessageItem";
-import {createRef} from "react";
+import {addMessageActionCreator, updateNewMessageActionCreator} from "../../redux/dialogReducer";
 
 
 const Dialogs = (props) => {
-
-    const newMessage = createRef()
 
     const dialogsElements = props.state.dialogs
         .map(dialog => (<DialogItem
@@ -20,12 +18,12 @@ const Dialogs = (props) => {
                                       message={message.message}/>))
 
     const addMessage = () => {
-        props.dispatch({type: 'ADD_MESSAGE'})
+        props.dispatch(addMessageActionCreator())
     }
 
-    const onMessageChange = () => {
-        let text = newMessage.current.value;
-        props.dispatch({type: 'UPDATE_NEW_MESSAGE_TEXT', text:text})
+    const onMessageChange = (e) => {
+        let text = e.target.value;
+        props.dispatch(updateNewMessageActionCreator(text))
     }
 
     return (
@@ -38,7 +36,8 @@ const Dialogs = (props) => {
             <div
                 className={style.messagesItems}>
                 {messageElements}
-                <textarea ref={newMessage} onChange={onMessageChange} value={props.state.newMessageText}></textarea>
+                <textarea placeholder={'Enter your message'} onChange={onMessageChange}
+                          value={props.state.newMessageText}></textarea>
                 <button onClick={addMessage}>Add message</button>
             </div>
         </div>

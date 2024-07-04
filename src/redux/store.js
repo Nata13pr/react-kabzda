@@ -1,3 +1,8 @@
+import profileReducer from "./profileReducer";
+import dialogs from "../components/Dialogs/Dialogs";
+import dialogReducer from "./dialogReducer";
+
+
 const store = {
     _state: {
         profilePage: {
@@ -72,36 +77,15 @@ const store = {
         console.log('State changed')
     },
     dispatch(action) {
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogPage = dialogReducer(this._state.dialogPage, action)
 
-        if (action.type === 'ADD_POST') {
-            const newPostObj = {
-                id: 8,
-                post: this._state.profilePage.newPostText,
-                likeCount: 0
-            }
-            this._state.profilePage.posts.push(newPostObj);
-            this._state.profilePage.newPostText = '';
-            this._callSubscriber(this._state)
-        } else if (action.type === 'UPDATE_NEW_POST_TEXT') {
-            console.log(action.text,'3333333333333')
-            this._state.profilePage.newPostText = action.text;
-            this._callSubscriber(this._state)
-        } else if (action.type === 'ADD_MESSAGE') {
-            const newMessageObj = {
-                id: 7,
-                message: this._state.dialogPage.newMessageText,
-            }
-            this._state.dialogPage.messages.push(newMessageObj);
-            this._state.dialogPage.newMessageText = '';
-            this._callSubscriber(this._state)
-        } else if (action.type === 'UPDATE_NEW_MESSAGE_TEXT') {
-            this._state.dialogPage.newMessageText = action.text;
-            this._callSubscriber(this._state)
-        }
+        this._callSubscriber(this._state)
     },
     subscribe(observer) {
         this._callSubscriber = observer;
     }
 }
+
 
 export default store;
