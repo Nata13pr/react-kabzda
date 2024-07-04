@@ -7,9 +7,10 @@ import {Route, Routes} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 function App(props) {
-    console.log(props.store.sidebar,'ffffffffffff')
+
     return (
         <div className="app-wrapper">
             <Header/>
@@ -19,17 +20,15 @@ function App(props) {
                     <Route
                         path="/dialogs"
                         element={
-                            <Dialogs
-                                state={props.store.dialogPage}
-                                dispatch={props.dispatch}
+                            <DialogsContainer
+                                store={props}
                             />
                         }/>
                     <Route
                         path="/profile"
                         element={
                             <Profile
-                                store={props.store.profilePage}
-                                dispatch={props.dispatch}
+                                store={props}
                             />
                         }/>
                     <Route

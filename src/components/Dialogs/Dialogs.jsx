@@ -6,24 +6,25 @@ import {addMessageActionCreator, updateNewMessageActionCreator} from "../../redu
 
 const Dialogs = (props) => {
 
-    const dialogsElements = props.state.dialogs
+    const dialogsElements = props.dialogs
         .map(dialog => (<DialogItem
             key={dialog.id}
             name={dialog.name}
             id={dialog.id}
             image={dialog.image}/>));
 
-    const messageElements = props.state.messages
+    const messageElements = props.messages
         .map(message => (<MessageItem key={message.id}
                                       message={message.message}/>))
 
     const addMessage = () => {
-        props.dispatch(addMessageActionCreator())
+        props.addMessage()
     }
 
     const onMessageChange = (e) => {
+        console.log(e,'ssssssssssss')
         let text = e.target.value;
-        props.dispatch(updateNewMessageActionCreator(text))
+        props.updateMessageText(text)
     }
 
     return (
@@ -37,7 +38,7 @@ const Dialogs = (props) => {
                 className={style.messagesItems}>
                 {messageElements}
                 <textarea placeholder={'Enter your message'} onChange={onMessageChange}
-                          value={props.state.newMessageText}></textarea>
+                          value={props.newMessageText}></textarea>
                 <button onClick={addMessage}>Add message</button>
             </div>
         </div>
