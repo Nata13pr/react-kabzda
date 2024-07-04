@@ -9,7 +9,7 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 
 function App(props) {
-
+    console.log(props.store.sidebar,'ffffffffffff')
     return (
         <div className="app-wrapper">
             <Header/>

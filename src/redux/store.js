@@ -1,5 +1,4 @@
 import profileReducer from "./profileReducer";
-import dialogs from "../components/Dialogs/Dialogs";
 import dialogReducer from "./dialogReducer";
 
 
@@ -86,6 +85,5 @@ const store = {
         this._callSubscriber = observer;
     }
 }
-
 
 export default store;
