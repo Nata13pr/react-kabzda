@@ -48,7 +48,7 @@ const Navbar = (props) => {
 
             <h3>Friends</h3>
             <div className={style.friendBlock}>
-                {props.state
+                {props.sidebar
                     .map(item => (
                         <Friend
                             key={item.id}

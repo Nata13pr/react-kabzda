@@ -1,8 +1,6 @@
 import style from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import MessageItem from "./MessageItem/MessageItem";
-import {addMessageActionCreator, updateNewMessageActionCreator} from "../../redux/dialogReducer";
-
 
 const Dialogs = (props) => {
 
@@ -22,8 +20,9 @@ const Dialogs = (props) => {
     }
 
     const onMessageChange = (e) => {
-        console.log(e,'ssssssssssss')
+
         let text = e.target.value;
+        console.log(text,'text')
         props.updateMessageText(text)
     }
 
