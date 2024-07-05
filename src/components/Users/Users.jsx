@@ -4,9 +4,8 @@ import axios from "axios";
 
 class Users extends Component {
 
-    constructor(props) {
-        super(props);
-
+    componentDidMount() {
+        console.log('kkkkk')
         axios.get('https://social-network.samuraijs.com/api/1.0/users')
             .then(response => this.props.setUsers(response.data.items)
             )
@@ -21,7 +20,9 @@ class Users extends Component {
                         <div>
                             <img
                                 src={user.photos.small ? user.photos.small : 'https://st.depositphotos.com/1537427/3571/v/450/depositphotos_35717211-stock-illustration-vector-user-icon.jpg'}
-                                className={styles.userPhoto}/>
+                                className={styles.userPhoto}
+                                alt={'user Avatar'}
+                            />
                         </div>
                         <div>
                             {user.followed
