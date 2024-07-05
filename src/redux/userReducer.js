@@ -1,34 +1,14 @@
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
+const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
+const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT'
 
 const initialState = {
-    users: [
-        // {
-        //     id: 1,
-        //     photoURL: 'https://upload.wikimedia.org/wikipedia/ru/5/5c/%D0%9D%D0%B8%D0%BD%D0%B0_%D0%9A%D0%B0%D0%B2%D0%BA%D0%B0%D0%B7%D1%81%D0%BA%D0%B0%D1%8F_%D0%BF%D0%BB%D0%B5%D0%BD%D0%BD%D0%B8%D1%86%D0%B0.jpg',
-        //     followed: true,
-        //     fullName: 'Nina',
-        //     status: "I am archeologist",
-        //     location: {city: 'Minsk', country: 'Belarus'}
-        // },
-        // {
-        //     id: 2,
-        //     photoURL: 'https://upload.wikimedia.org/wikipedia/ru/5/5c/%D0%9D%D0%B8%D0%BD%D0%B0_%D0%9A%D0%B0%D0%B2%D0%BA%D0%B0%D0%B7%D1%81%D0%BA%D0%B0%D1%8F_%D0%BF%D0%BB%D0%B5%D0%BD%D0%BD%D0%B8%D1%86%D0%B0.jpg',
-        //     followed: false,
-        //     fullName: 'Misha',
-        //     status: "I am  new in archeology",
-        //     location: {city: 'Washington', country: 'USA'}
-        // },
-        // {
-        //     id: 3,
-        //     photoURL: 'https://upload.wikimedia.org/wikipedia/ru/5/5c/%D0%9D%D0%B8%D0%BD%D0%B0_%D0%9A%D0%B0%D0%B2%D0%BA%D0%B0%D0%B7%D1%81%D0%BA%D0%B0%D1%8F_%D0%BF%D0%BB%D0%B5%D0%BD%D0%BD%D0%B8%D1%86%D0%B0.jpg',
-        //     followed: true,
-        //     fullName: 'Slava',
-        //     status: "I am a student",
-        //     location: {city: 'Madrid', country: 'Spain'}
-        // },
-    ]
+    users: [],
+    pageSize: 50,
+    totalUsersCount: 0,
+    currentPage: 1
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -56,7 +36,13 @@ const usersReducer = (state = initialState, action) => {
                 })
             }
         case SET_USERS: {
-            return {...state, users: [...state.users, ...action.users]}
+            return {...state, users: action.users}
+        }
+        case SET_CURRENT_PAGE: {
+            return {...state, currentPage: action.currentPage}
+        }
+        case SET_TOTAL_USERS_COUNT: {
+            return {...state, totalUsersCount: action.count}
         }
         default:
             return state;
@@ -68,4 +54,6 @@ export default usersReducer;
 
 export const followAC = (userId) => ({type: FOLLOW, userId});
 export const unfollowAC = (userId) => ({type: UNFOLLOW, userId});
-export const setUsersAC = (users) => ({type: SET_USERS, users})
+export const setUsersAC = (users) => ({type: SET_USERS, users});
+export const setTotalUsersCountAC = (count) => ({type: SET_TOTAL_USERS_COUNT, count});
+export const setCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
