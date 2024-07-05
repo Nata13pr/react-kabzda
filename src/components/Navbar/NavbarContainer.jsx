@@ -8,9 +8,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {}
-
-}
-
-export const NavbarContainer = connect(mapStateToProps, mapDispatchToProps)(Navbar)
+export const NavbarContainer = connect(mapStateToProps, {})(Navbar)

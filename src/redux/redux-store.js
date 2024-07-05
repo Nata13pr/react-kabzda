@@ -8,10 +8,12 @@ const reducers = combineReducers({
     profilePage: profileReducer,
     dialogPage: dialogReducer,
     sidebar: sideBarReducer,
-    usersPage:userReducer
+    usersPage: userReducer
 })
 
 const store = createStore(reducers);
+
+window.store = store;
 
 export default store;
 

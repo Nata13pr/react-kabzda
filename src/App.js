@@ -8,6 +8,7 @@ import Settings from "./components/Settings/Settings";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {NavbarContainer} from "./components/Navbar/NavbarContainer";
 import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 
 function App() {
@@ -19,15 +20,15 @@ function App() {
             <div className='app-wrapper-content'>
                 <Routes>
                     <Route
-                        path="/dialogs"
+                        path="/dialogs/*"
                         element={
                             <DialogsContainer
                             />
                         }/>
                     <Route
-                        path="/profile"
+                        path="/profile/*"
                         element={
-                            <Profile/>
+                            <ProfileContainer/>
                         }/>
                     <Route
                         path="/news"
