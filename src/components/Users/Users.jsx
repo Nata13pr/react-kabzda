@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./user.module.css";
 
-
 const  Users =(props)=> {
 
         let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -10,6 +9,7 @@ const  Users =(props)=> {
 
         for (let i = 1; i <= pagesCount; i += 1) {
             pages.push(i)
+        }
 
         return (
             <div>
@@ -61,6 +61,6 @@ const  Users =(props)=> {
             </div>
         );
     }
-}
+
 
 export default Users;
