@@ -46,14 +46,20 @@ const Navbar = (props) => {
                 </li>
             </ul>
 
+            <NavLink
+                className={({isActive}) => isActive ? style.activeLink : ''}
+                to='/users'>
+                Users
+            </NavLink>
+
             <h3>Friends</h3>
             <div className={style.friendBlock}>
                 {props.sidebar
                     .map(item => (
-                        <Friend
-                            key={item.id}
-                            image={item.image}
-                            name={item.name}/>
+                            <Friend
+                                key={item.id}
+                                image={item.image}
+                                name={item.name}/>
                     )
                     )}
             </div>
