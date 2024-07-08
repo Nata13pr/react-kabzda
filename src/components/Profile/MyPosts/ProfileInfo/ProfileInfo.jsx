@@ -3,6 +3,7 @@ import Preloader from "../../../../common/preloader/Preloader";
 
 const ProfileInfo = (props) => {
 
+
     if (!props.profile) {
         return <Preloader/>
     }
@@ -21,15 +22,16 @@ const ProfileInfo = (props) => {
                 <h3>{props.profile.aboutMe}</h3>
                 <ul>
                     <h3>Contacts</h3>
-                    <li>{props.profile.contacts.facebook}</li>
-                    <li>{props.profile.contacts.github}</li>
-                    <li>{props.profile.contacts.insagram}</li>
-                    <li>{props.profile.contacts.mainLink}</li>
-                    <li>{props.profile.contacts.twitter}</li>
-                    <li>{props.profile.contacts.website}</li>
-                    <li>{props.profile.contacts.youtube}</li>
+                    <li>Facebook - {props.profile.contacts.facebook}</li>
+                    <li>Github - {props.profile.contacts.github}</li>
+                    <li>Instagram - {props.profile.contacts.instagram}</li>
+                    <li>MainLink - {props.profile.contacts.mainLink}</li>
+                    <li>Twitter - {props.profile.contacts.twitter}</li>
+                    <li>Website - {props.profile.contacts.website}</li>
+                    <li>Youtube - {props.profile.contacts.youtube}</li>
                 </ul>
-                ava+description
+                <p>Looking for a job - {props.profile.lookingForAJob ? 'yes' : 'no'}</p>
+                <p>Job description - {props.profile.lookingForAJobDescription}</p>
             </div>
         </div>
     );

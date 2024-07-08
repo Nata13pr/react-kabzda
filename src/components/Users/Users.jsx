@@ -31,13 +31,15 @@ const Users = (props) => {
             {
                 props.users.map(user => <div key={user.id}>
                     <span>
-                        <NavLink to={'/profile/2'}><div>
+                        <NavLink to={`/profile/${user.id}`}>
+                            <div>
                             <img
                                 src={user.photos.small ? user.photos.small : 'https://st.depositphotos.com/1537427/3571/v/450/depositphotos_35717211-stock-illustration-vector-user-icon.jpg'}
                                 className={styles.userPhoto}
                                 alt={'user Avatar'}
                             />
-                        </div></NavLink>
+                        </div>
+                        </NavLink>
 
                         <div>
                             {user.followed

@@ -40,7 +40,7 @@ class UsersContainer extends Component {
     }
 
     render() {
-        console.log(this.props.isFetching)
+
         return (
             <>
                 {this.props.isFetching ? <Preloader/> : null}
