@@ -1,32 +1,56 @@
 import {Component} from "react";
 import {thunk} from "redux-thunk";
+import {setStatus} from "../../redux/profileReducer";
 
 class ProfileStatus extends Component {
+
     state = {
-        editMode: false
+        editMode: false,
+        status:this.props.status || ''
     }
 
-    activateEditMode() {
+    activateEditMode=()=> {
         this.setState(
-            {editMode: true}
+            {
+                editMode: true
+            }
         );
     }
 
-    deactivateEditMode() {
+    deactivateEditMode=()=> {
         this.setState(
-            {editMode: false}
+            {
+                editMode: false
+            }
         );
+        this.props.updateUserStatus(this.state.status)
     }
 
+    onStatusChange=(e)=>{
+        this.setState(
+            {
+                status:e.currentTarget.value
+            }
+        )
+    }
     render() {
+
         return (
             <div>
                 <div>
-                    {!this.state.editMode && (<span onDoubleClick={this.activateEditMode.bind(this)}>{this.props.status}</span>)}
+                    {!this.state.editMode && (<span
+                        onDoubleClick={this.activateEditMode}>
+                        {this.props.status || 'No status'}
+                    </span>)}
 
                 </div>
                 <div>
-                    {this.state.editMode && (<input onBlur={this.deactivateEditMode.bind(this)} value={this.props.status}/>)}
+                    {this.state.editMode && (<input
+                        autoFocus={true}
+                        onBlur={this.deactivateEditMode}
+                        value={this.state.status }
+                        onChange={this.onStatusChange}
+                    />)}
                 </div>
             </div>
         )

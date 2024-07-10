@@ -1,8 +1,12 @@
 import {profileApi} from "../api/api";
+import dialogs from "../components/Dialogs/Dialogs";
+import login from "../components/Login/Login";
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
+const SET_STATUS = 'SET-STATUS';
+const UPDATE_STATUS = 'UPDATE-STATUS';
 
 const initialState = {
     posts: [
@@ -11,7 +15,8 @@ const initialState = {
         {id: 3, post: 'I want to work', likeCount: '6'},
     ],
     newPostText: 'it-kamasutra.com',
-    profile: null
+    profile: null,
+    status: '',
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -38,6 +43,11 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 profile: action.profile
             }
+        case SET_STATUS:
+            return {
+                ...state,
+                status: action.status
+            }
         default:
             return state;
     }
@@ -46,12 +56,38 @@ const profileReducer = (state = initialState, action) => {
 export const getUserById = (userId) => {
     return (dispatch) => {
         profileApi.getUserProfileById(userId)
-            .then(response => dispatch(setUserProfile(response.data)))
+            .then(response => {
+                dispatch(setUserProfile(response.data))
+            })
     }
 }
 
-export default profileReducer;
+export const setUserStatus = (userId) => {
+    return (dispatch) => {
+        profileApi.getUserStatus(userId)
+            .then(response => {
+                    dispatch(setStatus(response.data))
+                }
+            )
+    }
+}
+
+export const updateUserStatus = (status) => {
+    return (dispatch) => {
+        profileApi.updateUserStatus(status)
+            .then(
+                response => {
+                    if (response.data.resultCode === 0) {
+                        dispatch(setStatus(status))
+                    }
+                }
+            )
+    }
+}
 
 export const addPost = () => ({type: ADD_POST});
 export const updateNewPost = (text) => ({type: UPDATE_NEW_POST_TEXT, text});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+export const setStatus = (status) => ({type: SET_STATUS, status});
+
+export default profileReducer;
