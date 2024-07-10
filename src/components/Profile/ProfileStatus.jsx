@@ -1,6 +1,4 @@
 import {Component} from "react";
-import {thunk} from "redux-thunk";
-import {setStatus} from "../../redux/profileReducer";
 
 class ProfileStatus extends Component {
 
@@ -33,6 +31,14 @@ class ProfileStatus extends Component {
             }
         )
     }
+    componentDidUpdate(prevProps, prevState) {
+        if(prevProps.status!==this.props.status){
+            this.setState({
+                status:this.props.status
+            })
+        }
+    }
+
     render() {
 
         return (

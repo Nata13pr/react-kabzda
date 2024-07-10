@@ -1,12 +1,9 @@
 import {profileApi} from "../api/api";
-import dialogs from "../components/Dialogs/Dialogs";
-import login from "../components/Login/Login";
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const SET_STATUS = 'SET-STATUS';
-const UPDATE_STATUS = 'UPDATE-STATUS';
 
 const initialState = {
     posts: [
