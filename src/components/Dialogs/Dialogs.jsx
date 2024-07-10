@@ -2,6 +2,7 @@ import style from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import MessageItem from "./MessageItem/MessageItem";
 import React from "react";
+import DialogsForm from "./DialogsForm";
 
 
 const Dialogs = (props) => {
@@ -17,14 +18,9 @@ const Dialogs = (props) => {
         .map(message => (<MessageItem key={message.id}
                                       message={message.message}/>))
 
-    const addMessage = () => {
-        props.addMessage()
-    }
 
-    const onMessageChange = (e) => {
-
-        let text = e.target.value;
-        props.updateMessageText(text)
+    const onSubmit = (formData) => {
+        props.addMessage(formData.myMessage)
     }
 
     return (
@@ -37,17 +33,9 @@ const Dialogs = (props) => {
             <div
                 className={style.messagesItems}>
                 {messageElements}
-                <textarea
-                    placeholder={'Enter your message'}
-                    onChange={onMessageChange}
-                    value={props.newMessageText}>
-
-                </textarea>
-                <button
-                    onClick={addMessage}>
-                    Add message
-                </button>
+                <DialogsForm onSubmit={onSubmit}/>
             </div>
+
         </div>
     )
 }
