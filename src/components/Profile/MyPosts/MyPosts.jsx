@@ -1,8 +1,9 @@
 import Post from "./Post/Post";
 import style from './MyPosts.module.css'
 import MyPostForm from "./MyPostForm";
+import {memo} from "react";
 
-const MyPosts = (props) => {
+const MyPosts = (props) => memo(props => {
 
     const postElements = props.posts
         .map(post => (
@@ -26,5 +27,6 @@ const MyPosts = (props) => {
             </div>
         </div>
     )
-}
+})
+
 export default MyPosts;
