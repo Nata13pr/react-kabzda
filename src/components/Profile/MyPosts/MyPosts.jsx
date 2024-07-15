@@ -3,15 +3,17 @@ import style from './MyPosts.module.css'
 import MyPostForm from "./MyPostForm";
 import {memo} from "react";
 
-const MyPosts = (props) => memo(props => {
+const MyPosts =  memo(props => {
 
-    const postElements = props.posts
-        .map(post => (
-            <Post
-                key={post.id}
-                message={post.post}
-                likeCount={post.likeCount}/>
-        ))
+    const postElements =
+        [...props.posts]
+            .reverse()
+            .map(post => (
+                <Post
+                    key={post.id}
+                    message={post.post}
+                    likeCount={post.likeCount}/>
+            ))
 
 
     const onSubmit = (formData) => {
