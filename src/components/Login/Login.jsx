@@ -7,8 +7,8 @@ import {Navigate} from "react-router-dom";
 
 
 const Login = (props) => {
-    const onSubmit = (formData) => {
-        props.authLogin(formData)
+    const onSubmit = (formData,setErrors) => {
+        props.authLogin(formData,setErrors)
     }
 
     if(props.isAuth){

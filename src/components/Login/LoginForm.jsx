@@ -3,6 +3,7 @@ import React from "react";
 import {maxLengthCreator, required} from "../../utils/validators/validators";
 import * as Yup from "yup";
 import {Input} from "../../common/FormControls/FormControls";
+import styles from "./../../common/FormControls/FormsControls.module.css";
 
 const maxLength50 = maxLengthCreator(50);
 
@@ -16,8 +17,8 @@ const LoginForm = (props) => {
         <Formik
             validationSchema={validationSchema}
             initialValues={{email: '', password: '', rememberMe: false}}
-            onSubmit={(values, {resetForm}) => {
-                props.onSubmit(values);
+            onSubmit={(values, {setErrors,resetForm}) => {
+                props.onSubmit(values,setErrors);
                 resetForm();
             }}
         >
@@ -48,6 +49,7 @@ const LoginForm = (props) => {
                             validate={[required, maxLength50]}/>
                         <label htmlFor="rememberMe">Remember me</label>
                     </div>
+                    {props.error && <div className={styles.formSummaryError}>{props.error}</div>}
                     <button type="submit">Login</button>
                 </Form>
             )}
