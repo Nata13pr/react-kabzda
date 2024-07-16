@@ -1,12 +1,11 @@
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, HashRouter, Route, Routes} from "react-router-dom";
 import {compose} from "redux";
 import {connect, Provider} from "react-redux";
-import {Component} from "react";
+import {Component, lazy} from "react";
 
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import UsersContainer from "./components/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import Preloader from "./common/preloader/Preloader";
@@ -16,10 +15,13 @@ import './App.css';
 import store from "./redux/redux-store";
 import {withSuspense} from "./hoc/withSuspense";
 import {NavbarContainer} from "./components/Navbar/NavbarContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
+import UsersContainer from "./components/Users/UsersContainer";
+import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
-const DialogsContainer=React.lazy(() => import("./components/Dialogs/DialogsContainer"));
-const ProfileContainer=React.lazy(() => import("./components/Profile/ProfileContainer"));
-const UsersContainer=React.lazy(() => import("./components/Users/UsersContainer"));
+// const DialogsContainer=lazy(() => import("./components/Dialogs/DialogsContainer"));
+// const ProfileContainer=lazy(() => import("./components/Profile/ProfileContainer"));
+// const UsersContainer=lazy(() => import("./components/Users/UsersContainer"));
 
 class App extends Component {
 
@@ -45,13 +47,13 @@ class App extends Component {
                             }/>
                         <Route
                             path="/dialogs/*"
-                            element={withSuspense(DialogsContainer
-                            )
-
+                            // element={withSuspense(DialogsContainer)
+                            element={<DialogsContainer/>
                             }/>
                         <Route
                             path="/profile/:userId?"
-                            element={withSuspense(ProfileContainer())
+                            // element={withSuspense(ProfileContainer)
+                            element={<ProfileContainer/>
                             }/>
                         <Route
                             path="/news"
@@ -70,7 +72,7 @@ class App extends Component {
                             }/>
                         <Route
                             path="/users"
-                            element={withSuspense(UsersContainer)
+                            element={<UsersContainer/>
                             }/>
                     </Routes>
                 </div>
@@ -92,11 +94,11 @@ const AppContainer=compose(
 )(App);
 
 const SamuraiJSApp = (props) => {
-    return <BrowserRouter>
+    return <HashRouter>
         <Provider store={store}>
             <AppContainer />
         </Provider>
-    </BrowserRouter>
+    </HashRouter>
 }
 
 export default SamuraiJSApp;
