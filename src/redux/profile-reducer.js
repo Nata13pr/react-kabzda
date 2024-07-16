@@ -1,5 +1,6 @@
 import {profileApi} from "../api/api";
 
+
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const SET_STATUS = 'SET-STATUS';
@@ -87,6 +88,20 @@ export const savePhoto=(file)=>async (dispatch)=>{
     }
 }
 
+export const saveProfile = (profile) => async (dispatch, getState) => {
+    const userId = getState().auth.userId;
+    const response = await profileApi.savePhoto(profile);
+
+    if (response.data.resultCode === 0) {
+        dispatch(getUserProfile(userId));
+    } else {
+        dispatch({
+            type: "FORM_ERROR", // Це має бути ваш власний action для обробки помилок форми
+            payload: response.data.messages[0]
+        });
+        return Promise.reject(response.data.messages[0]);
+    }
+};
 export const addPost = (formData) => ({type: ADD_POST, formData});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setStatus = (status) => ({type: SET_STATUS, status});
