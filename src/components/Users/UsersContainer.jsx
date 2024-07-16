@@ -73,7 +73,6 @@ export default compose(
             getUsersByPage
         }
     ),
-    withAuthRedirect
 )
 (UsersContainer)
 
