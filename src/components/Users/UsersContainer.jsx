@@ -1,33 +1,35 @@
 import {connect} from "react-redux";
+import {compose} from "redux";
+import React, {Component} from "react";
+
 import Users from "./Users";
 import {
     follow,
-    getUsers,
-    getUsersByPage,
-     unfollow,
+    getUsersByPage, requestUsers,
+    unfollow
+} from "../../redux/user-reducer";
 
-
-} from "../../redux/userReducer";
-import React, {Component} from "react";
 import Preloader from "../../common/preloader/Preloader";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
-import {compose} from "redux";
+
 import {
     getCurrentPage,
     getFollowingInProgress,
     getIsFetching,
     getPageSize,
-    getTotalUsersCount
+    getTotalUsersCount, getUsers,
 } from "../../redux/users-selectors";
 
 class UsersContainer extends Component {
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+        const {currentPage, pageSize} = this.props;
+        this.props.getUsers(currentPage, pageSize)
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.getUsersByPage(pageNumber, this.props.pageSize)
+        const {pageSize} = this.props;
+        this.props.getUsers(pageNumber, pageSize)
     }
 
     render() {
@@ -36,6 +38,7 @@ class UsersContainer extends Component {
             <>
                 {this.props.isFetching ? <Preloader/> : null}
                 <Users
+                    followingInProgress={this.props.followingInProgress}
                     currentPage={this.props.currentPage}
                     pageSize={this.props.pageSize}
                     totalUsersCount={this.props.totalUsersCount}
@@ -43,31 +46,28 @@ class UsersContainer extends Component {
                     unfollow={this.props.unfollow}
                     follow={this.props.follow}
                     onPageChanged={this.onPageChanged}
-                    disabledUsersButtonDuringFetching={this.props.disabledUsersButtonDuringFetching}
                 />
             </>
         );
     }
 }
 
-
 const mapStateToProps = (state) => {
 
     return {
-        users: getUsers(),
-        pageSize: getPageSize(),
-        totalUsersCount: getTotalUsersCount(),
-        currentPage: getCurrentPage(),
-        isFetching: getIsFetching(),
-        disabledUsersButtonDuringFetching: getFollowingInProgress()
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state)
     }
 }
-
 
 export default compose(
     connect(mapStateToProps,
         {
-            getUsers,
+            getUsers: requestUsers,
             unfollow,
             follow,
             getUsersByPage

@@ -1,5 +1,5 @@
 const initialState =
- [
+    [
         {
             id: 1,
             name: 'Nike',
@@ -23,7 +23,6 @@ const sideBarReducer = (state = initialState, action) => {
         default:
             return state;
     }
-
 }
 
 export default sideBarReducer;

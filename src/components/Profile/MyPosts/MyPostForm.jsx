@@ -1,22 +1,23 @@
 import React from 'react';
 import {Field, Form, Formik} from "formik";
-import {Textarea} from "../../../common/FormControls/FormControls";
 import * as Yup from "yup";
+
+import {Textarea} from "../../../common/FormControls/FormControls";
 import {maxLengthCreator, required} from "../../../utils/validators/validators";
 
 const maxLength50 = maxLengthCreator(50);
 
 const validationSchema = Yup.object().shape({
-    myMessage: Yup.string().required('Required').max(50, 'Must be 50 characters or less'),
+    myPost: Yup.string().required('Required').max(50, 'Must be 50 characters or less'),
 });
 
 const MyPostForm = (props) => {
+
     return (
         <Formik
             validationSchema={validationSchema}
             initialValues={{myPost: ''}}
             onSubmit={(values, {resetForm}) => {
-                console.log(values);
                 props.onSubmit(values);
                 resetForm();
             }}

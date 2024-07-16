@@ -1,5 +1,6 @@
-import style from './Navbar.module.css'
 import {NavLink} from "react-router-dom";
+
+import style from './Navbar.module.css'
 import Friend from "./Friends/Friend";
 
 const Navbar = (props) => {
@@ -60,7 +61,7 @@ const Navbar = (props) => {
                                 key={item.id}
                                 image={item.image}
                                 name={item.name}/>
-                    )
+                        )
                     )}
             </div>
         </nav>

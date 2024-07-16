@@ -30,10 +30,10 @@ const authApi = {
     me: () => {
         return instance.get(`auth/me`);
     },
-    login:(email,password,rememberMe)=>{
-        return instance.post('auth/login', {email,password,rememberMe})
+    login: (email, password, rememberMe) => {
+        return instance.post('auth/login', {email, password, rememberMe})
     },
-    logout:()=>{
+    logout: () => {
         return instance.delete('auth/login')
     }
 }
@@ -42,11 +42,11 @@ const profileApi = {
     getUserProfileById: (userId) => {
         return instance.get(`/profile/${userId}`)
     },
-    getUserStatus:(userId)=>{
+    getUserStatus: (userId) => {
         return instance.get(`profile/status/${userId}`)
     },
-    updateUserStatus:(status)=>{
-        return instance.put(`profile/status`,{status:status})
+    updateUserStatus: (status) => {
+        return instance.put(`profile/status`, {status: status})
     }
 }
 export {

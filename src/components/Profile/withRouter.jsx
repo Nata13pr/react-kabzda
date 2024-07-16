@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import {useParams, useNavigate, useLocation} from 'react-router-dom';
 
 const withRouter = (Component) => {
     function ComponentWithRouterProp(props) {
@@ -10,7 +10,7 @@ const withRouter = (Component) => {
         return (
             <Component
                 {...props}
-                router={{ params, navigate, location }}
+                router={{params, navigate, location}}
             />
         );
     }

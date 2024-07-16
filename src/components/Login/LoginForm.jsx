@@ -1,7 +1,8 @@
 import {Field, Form, Formik} from "formik";
 import React from "react";
-import {maxLengthCreator, required} from "../../utils/validators/validators";
 import * as Yup from "yup";
+
+import {maxLengthCreator, required} from "../../utils/validators/validators";
 import {Input} from "../../common/FormControls/FormControls";
 import styles from "./../../common/FormControls/FormsControls.module.css";
 
@@ -17,8 +18,8 @@ const LoginForm = (props) => {
         <Formik
             validationSchema={validationSchema}
             initialValues={{email: '', password: '', rememberMe: false}}
-            onSubmit={(values, {setErrors,resetForm}) => {
-                props.onSubmit(values,setErrors);
+            onSubmit={(values, {setErrors, resetForm}) => {
+                props.onSubmit(values, setErrors);
                 resetForm();
             }}
         >
@@ -47,7 +48,9 @@ const LoginForm = (props) => {
                             type="checkbox"
                             component={Input}
                             validate={[required, maxLength50]}/>
-                        <label htmlFor="rememberMe">Remember me</label>
+                        <label htmlFor="rememberMe">
+                            Remember me
+                        </label>
                     </div>
                     {props.error && <div className={styles.formSummaryError}>{props.error}</div>}
                     <button type="submit">Login</button>

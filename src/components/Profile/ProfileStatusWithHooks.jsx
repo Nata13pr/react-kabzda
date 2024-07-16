@@ -3,22 +3,23 @@ import React, {useEffect} from 'react';
 const ProfileStatusWithHooks = (props) => {
 
     const [editMode, setEditMode] = React.useState(false);
-    const [status,setStatus] = React.useState(props.status);
+    const [status, setStatus] = React.useState(props.status);
 
     useEffect(() => {
-        setStatus(props.status)
+        setStatus(props.status || '')
     }, [props.status]);
 
-    const activateEditMode=()=>{
+    const activateEditMode = () => {
         setEditMode(true)
+
     }
 
-    const deactivatedEditMode=()=> {
+    const deactivatedEditMode = () => {
         setEditMode(false);
-        props.updateUserStatus(status)
+        props.updateStatus(status)
     }
 
-    const onStatusChange=(e)=>{
+    const onStatusChange = (e) => {
         setStatus(e.currentTarget.value)
     }
 

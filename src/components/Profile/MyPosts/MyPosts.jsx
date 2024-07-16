@@ -1,9 +1,10 @@
+import {memo} from "react";
+
 import Post from "./Post/Post";
 import style from './MyPosts.module.css'
 import MyPostForm from "./MyPostForm";
-import {memo} from "react";
 
-const MyPosts =  memo(props => {
+const MyPosts = memo(props => {
 
     const postElements =
         [...props.posts]
@@ -16,14 +17,15 @@ const MyPosts =  memo(props => {
             ))
 
 
-    const onSubmit = (formData) => {
+    const onAddPost = (formData) => {
+        console.log(formData, 'formData')
         props.addPost(formData.myPost)
     }
 
     return (
         <div className={style.postsBlock}>
             My posts
-            <MyPostForm onSubmit={onSubmit}/>
+            <MyPostForm onSubmit={onAddPost}/>
             <div className={style.posts}>
                 {postElements}
             </div>

@@ -1,8 +1,9 @@
 import React from 'react';
-import { Field, Form, Formik } from "formik";
+import {Field, Form, Formik} from "formik";
 import * as Yup from "yup";
-import { Textarea } from "../../common/FormControls/FormControls";
-import { maxLengthCreator, required } from "../../utils/validators/validators";
+
+import {Textarea} from "../../common/FormControls/FormControls";
+import {maxLengthCreator, required} from "../../utils/validators/validators";
 
 const maxLength50 = maxLengthCreator(50);
 
@@ -13,14 +14,14 @@ const validationSchema = Yup.object().shape({
 const DialogsForm = (props) => {
     return (
         <Formik
-            initialValues={{ myMessage: '' }}
+            initialValues={{myMessage: ''}}
             validationSchema={validationSchema}
-            onSubmit={(values, { resetForm }) => {
+            onSubmit={(values, {resetForm}) => {
                 props.onSubmit(values);
                 resetForm();
             }}
         >
-            {({ handleSubmit }) => (
+            {({handleSubmit}) => (
                 <Form onSubmit={handleSubmit}>
                     <div>
                         <Field

@@ -1,7 +1,6 @@
 import styles from './FormsControls.module.css';
 
-
-export const FormControl = ({ touched, error, children }) => {
+export const FormControl = ({touched, error, children}) => {
     const hasError = touched && error;
 
     return (
@@ -14,8 +13,8 @@ export const FormControl = ({ touched, error, children }) => {
     );
 };
 
-export const Textarea = ({ field, form, ...props }) => {
-    const { touched, errors } = form;
+export const Textarea = ({field, form, ...props}) => {
+    const {touched, errors} = form;
     const hasError = touched[field.name] && errors[field.name];
 
     return (
@@ -24,8 +23,8 @@ export const Textarea = ({ field, form, ...props }) => {
         </FormControl>
     );
 };
-export const Input = ({ field, form, ...props }) => {
-    const { touched, errors } = form;
+export const Input = ({field, form, ...props}) => {
+    const {touched, errors} = form;
     const hasError = touched[field.name] && errors[field.name];
 
     return (
