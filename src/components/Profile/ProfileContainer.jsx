@@ -20,12 +20,17 @@ class ProfileContainer extends Component {
 
         if (!userId) {
             userId = this.props.authorizedUserId;
+            if (!userId) {
+                this.props.history.push("/login");
+            }
         }
 
         this.props.getUserProfile(userId);
+        this.props.setUserStatus(userId);
     }
 
     componentDidMount() {
+
         this.refreshProfile()
     }
 
@@ -49,16 +54,15 @@ class ProfileContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {
+    return( {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
         authorizedUserId: state.auth.userId,
         isAuth: state.auth.isAuth
-    }
+    })
 }
 
 export default compose(
-    connect(mapStateToProps, {getUserProfile, setUserStatus, updateUserStatus, savePhoto,saveProfile})(ProfileContainer),
-    withAuthRedirect,
+    connect(mapStateToProps, {getUserProfile, setUserStatus, updateUserStatus, savePhoto,saveProfile}),
     withRouter
 )(ProfileContainer)

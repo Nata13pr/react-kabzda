@@ -90,16 +90,12 @@ export const savePhoto=(file)=>async (dispatch)=>{
 
 export const saveProfile = (profile) => async (dispatch, getState) => {
     const userId = getState().auth.userId;
-    const response = await profileApi.savePhoto(profile);
-
+    const response = await profileApi.saveProfile(profile);
     if (response.data.resultCode === 0) {
         dispatch(getUserProfile(userId));
     } else {
-        dispatch({
-            type: "FORM_ERROR", // Це має бути ваш власний action для обробки помилок форми
-            payload: response.data.messages[0]
-        });
-        return Promise.reject(response.data.messages[0]);
+        // Error handling code
+        throw new Error(response.data.messages[0]);
     }
 };
 export const addPost = (formData) => ({type: ADD_POST, formData});
